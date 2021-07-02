@@ -12,8 +12,6 @@ class Select extends React.Component {
         files: [null, null, null],
         position: 0,
         selectedFile: [],
-        previreUrl: null,
-        isValid: false,
     };
 
     pickedHandler = (event) => {
@@ -26,17 +24,13 @@ class Select extends React.Component {
                 pickedFile = event.target.files;
                 this.setState({
                     selectedFile: event.target.files,
-                    isValid: true,
                 });
             }
 
-            console.log(event.target.files, pickedFile, this.state.isValid);
-            console.log(this.state.selectedFile, pickedFile.length);
             for (var i = 0; i < pickedFile.length; i = i + 1) {
                 const fileReader = new FileReader();
                 fileReader.onload = () => {
                     let url = fileReader.result;
-                    this.setState({ previewUrl: fileReader.result });
                     let urls = this.state.files;
                     if (this.state.position < this.state.files.length) {
                         urls[this.state.position] = url;
@@ -67,7 +61,6 @@ class Select extends React.Component {
             );
             this.setState({ files: abc, position: this.state.position - 1 });
         }
-        console.log(abc.length);
         if (abc.length < 3) {
             abc.push(null);
             this.setState({ files: abc });
