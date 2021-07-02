@@ -33,7 +33,6 @@ class Select extends React.Component {
             console.log(event.target.files, pickedFile, this.state.isValid);
             console.log(this.state.selectedFile, pickedFile.length);
             for (var i = 0; i < pickedFile.length; i = i + 1) {
-                console.log(i);
                 const fileReader = new FileReader();
                 fileReader.onload = () => {
                     let url = fileReader.result;
@@ -61,11 +60,17 @@ class Select extends React.Component {
     };
 
     deletePhotoHandler = (f, i) => {
+        let abc;
         if (this.state.files) {
-            let abc = this.state.files.filter(
+            abc = this.state.files.filter(
                 (f1, index) => f1 !== f || index !== i
             );
             this.setState({ files: abc, position: this.state.position - 1 });
+        }
+        console.log(abc.length);
+        if (abc.length < 3) {
+            abc.push(null);
+            this.setState({ files: abc });
         }
         this.filePickerRef = React.createRef();
     };
@@ -110,7 +115,7 @@ class Select extends React.Component {
                             </div>
                         </div>
                     ))}
-                    {this.state.position != this.props.count && (
+                    {this.state.position !== this.props.count && (
                         <div>
                             <button
                                 className="add_more_button"
