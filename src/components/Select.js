@@ -9,7 +9,7 @@ class Select extends React.Component {
         this.filePickerRef = React.createRef();
     }
     state = {
-        files: [null, null, null],
+        files: [],
         position: 0,
         selectedFile: [],
     };
@@ -108,15 +108,82 @@ class Select extends React.Component {
                             </div>
                         </div>
                     ))}
-                    {this.state.position !== this.props.count && (
+                    {this.state.position == 0 && (
                         <div>
-                            <button
-                                className="add_more_button"
-                                onClick={this.pickImageHandler}>
-                                Add More
-                            </button>
+                            <div className="square">
+                                <input
+                                    multiple
+                                    type="file"
+                                    style={{ display: 'none' }}
+                                    ref={this.filePickerRef}
+                                    accept=".jpg,.png,.jpeg"
+                                    onChange={this.pickedHandler}
+                                />
+                                <div>
+                                    <div className="image-upload__preview">
+                                        {<p>Please pick an image.</p>}
+                                    </div>
+                                    <button onClick={this.pickImageHandler}>
+                                        Pick photu
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     )}
+                    {this.state.position <= 1 && (
+                        <div>
+                            <div className="square">
+                                <input
+                                    multiple
+                                    type="file"
+                                    style={{ display: 'none' }}
+                                    ref={this.filePickerRef}
+                                    accept=".jpg,.png,.jpeg"
+                                    onChange={this.pickedHandler}
+                                />
+                                <div>
+                                    <div className="image-upload__preview">
+                                        {<p>Please pick an image.</p>}
+                                    </div>
+                                    <button onClick={this.pickImageHandler}>
+                                        Pick photu
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {this.state.position <= 2 && (
+                        <div>
+                            <div className="square">
+                                <input
+                                    multiple
+                                    type="file"
+                                    style={{ display: 'none' }}
+                                    ref={this.filePickerRef}
+                                    accept=".jpg,.png,.jpeg"
+                                    onChange={this.pickedHandler}
+                                />
+                                <div>
+                                    <div className="image-upload__preview">
+                                        {<p>Please pick an image.</p>}
+                                    </div>
+                                    <button onClick={this.pickImageHandler}>
+                                        Pick photu
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {this.state.position !== this.props.count &&
+                        this.state.position >= 3 && (
+                            <div>
+                                <button
+                                    className="add_more_button"
+                                    onClick={this.pickImageHandler}>
+                                    Add More
+                                </button>
+                            </div>
+                        )}
                 </div>
             </div>
         );
