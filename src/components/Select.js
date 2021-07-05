@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Square from './Square';
 import './Select.css';
 
 class Select extends React.Component {
@@ -61,10 +62,6 @@ class Select extends React.Component {
             );
             this.setState({ files: abc, position: this.state.position - 1 });
         }
-        if (abc.length < 3) {
-            abc.push(null);
-            this.setState({ files: abc });
-        }
         this.filePickerRef = React.createRef();
     };
 
@@ -108,71 +105,26 @@ class Select extends React.Component {
                             </div>
                         </div>
                     ))}
-                    {this.state.position == 0 && (
-                        <div>
-                            <div className="square">
-                                <input
-                                    multiple
-                                    type="file"
-                                    style={{ display: 'none' }}
-                                    ref={this.filePickerRef}
-                                    accept=".jpg,.png,.jpeg"
-                                    onChange={this.pickedHandler}
-                                />
-                                <div>
-                                    <div className="image-upload__preview">
-                                        {<p>Please pick an image.</p>}
-                                    </div>
-                                    <button onClick={this.pickImageHandler}>
-                                        Pick photu
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    {this.state.position === 0 && (
+                        <Square
+                            filePickerRef={this.filePickerRef}
+                            pickedHandler={this.pickedHandler}
+                            pickImageHandler={this.pickImageHandler}
+                        />
                     )}
                     {this.state.position <= 1 && (
-                        <div>
-                            <div className="square">
-                                <input
-                                    multiple
-                                    type="file"
-                                    style={{ display: 'none' }}
-                                    ref={this.filePickerRef}
-                                    accept=".jpg,.png,.jpeg"
-                                    onChange={this.pickedHandler}
-                                />
-                                <div>
-                                    <div className="image-upload__preview">
-                                        {<p>Please pick an image.</p>}
-                                    </div>
-                                    <button onClick={this.pickImageHandler}>
-                                        Pick photu
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <Square
+                            filePickerRef={this.filePickerRef}
+                            pickedHandler={this.pickedHandler}
+                            pickImageHandler={this.pickImageHandler}
+                        />
                     )}
                     {this.state.position <= 2 && (
-                        <div>
-                            <div className="square">
-                                <input
-                                    multiple
-                                    type="file"
-                                    style={{ display: 'none' }}
-                                    ref={this.filePickerRef}
-                                    accept=".jpg,.png,.jpeg"
-                                    onChange={this.pickedHandler}
-                                />
-                                <div>
-                                    <div className="image-upload__preview">
-                                        {<p>Please pick an image.</p>}
-                                    </div>
-                                    <button onClick={this.pickImageHandler}>
-                                        Pick photu
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <Square
+                            filePickerRef={this.filePickerRef}
+                            pickedHandler={this.pickedHandler}
+                            pickImageHandler={this.pickImageHandler}
+                        />
                     )}
                     {this.state.position !== this.props.count &&
                         this.state.position >= 3 && (
